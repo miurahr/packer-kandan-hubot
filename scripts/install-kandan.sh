@@ -26,6 +26,7 @@ bundle install
 
 install -m 644 /tmp/kandan/database.yml ${KROOT}/config/database.yml
 sed -ri 's/config.serve_static_assets = false/config.serve_static_assets = true/g' ${KROOT}/config/environments/production.rb
+sed -ri 's/# Do not compress assets/config.serve_static_assets = true/g' ${KROOT}/config/environments/development.rb
 
 chown -R kandan:kandan ${KROOT}
 
