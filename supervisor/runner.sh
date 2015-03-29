@@ -43,13 +43,12 @@ case $KANDAN_MODE in
 esac
 
 cd ${KROOT}
-bundle exec rake db:create db:migrate kandan:bootstrap
-bundle exec rake assets:precompile
-bundle exec rake kandan:boot_hubot
-bundle exec rake kandan:hubot_access_key | grep -oP "(?<=Your hubot access key is )[^ ]*" > hubot-key
-
+sudo -u kandan -E bundle exec rake db:create db:migrate kandan:bootstrap
+sudo -u kandan -E bundle exec rake assets:precompile
+sudo -u kandan -E bundle exec rake kandan:boot_hubot
+sudo -u kandan -E bundle exec rake kandan:hubot_access_key | grep -oP "(?<=Your hubot access key is )[^ ]*" > hubot-key
 HUBOT_KEY=`echo hubot-key`
-echo "export HUBOT_KANDAN_TOKEN=${HUBOT_KEY}" >> /etc/profile.d/hubot.sh
+
 # kandan conf
 sed -ri "s/command=bundle exec thin start -e production/command=bundle exec thin start -e ${KANDAN_MODE}/g" $KANDAN_CONF
 # hubot conf
@@ -57,6 +56,7 @@ sed -ri "s/HUBOT_KANDAN_TOKEN=[^,]*/HUBOT_KANDAN_TOKEN=${HUBOT_KEY}/g" ${HUBOT_C
 sed -ri "s/HUBOT_TRELLO_KEY=[^,]*/HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}/g"       $HUBOT_CONF
 sed -ri "s/HUBOT_TRELLO_TOKEN=[^,]*/HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}/g" $HUBOT_CONF
 sed -ri "s/HUBOT_TRELLO_BOARD=[^,]*/HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}/g" $HUBOT_CONF
+
 # start daemon
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 

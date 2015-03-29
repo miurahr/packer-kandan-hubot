@@ -22,7 +22,6 @@ make package
 
 install /tmp/hubot/hubot-scripts.json ${HROOT}/hubot/hubot-scripts.json
 install /tmp/hubot/external-scripts.json ${HROOT}/hubot/external-scripts.json
-install -m 755 /tmp/hubot/hubot.sh /etc/profile.d/hubot.sh
 
 cd ${HROOT}/hubot
 npm install faye
