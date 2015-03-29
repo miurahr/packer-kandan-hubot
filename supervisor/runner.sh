@@ -9,6 +9,7 @@ set -e
 # KANDAN_DBUSER
 # KANDAN_DBPASS
 # KANDAN_DBNAME
+# 
 # HUBOT_TRELLO_KEY
 # HUBOT_TRELLO_TOKEN
 # HUBOT_TRELLO_BOARD
@@ -17,8 +18,8 @@ set -e
 HUBOT_CONF=/etc/supervisor/conf.d/hubot.conf
 KANDAN_CONF=/etc/supervisor/conf.d/kandan.conf
 KANDAN_DB_CONF=/srv/kandan/config/database.yml
-${HROOT}=/srv/hubot-2.6.0
-${KROOT}=/srv/kandan
+HROOT=/srv/hubot-2.6.0
+KROOT=/srv/kandan
 
 KANDAN_MODE=${MODE:-'development'}
 
@@ -45,17 +46,17 @@ cd ${KROOT}
 bundle exec rake db:create db:migrate kandan:bootstrap
 bundle exec rake assets:precompile
 bundle exec rake kandan:boot_hubot
-bundle exec rake kandan:hubot_access_key | awk '{print $6}' > hubot-key
+bundle exec rake kandan:hubot_access_key | grep -oP "(?<=Your hubot access key is )[^ ]*" > hubot-key
 
-sudo awk '{print "export HUBOT_KANDAN_TOKEN="$0}' ${KROOT}/hubot-key >> /etc/profile.d/hubot.sh
-sudo awk '{print " HUBOT_KANDAN_TOKEN="$0}' ${KROOT}/hubot-key >> ${HUBOT_CONF}
-
-sudo sed -ri "s/command=bundle exec thin start -e production/command=bundle exec thin start -e ${KANDAN_MODE}/g" $KANDAN_CONF
-
-# hubot_trello environment
-sudo sed -ri "s/HUBOT_TRELLO_KEY=[^,]*/HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}/g" $HUBOT_CONF
-sudo sed -ri "s/HUBOT_TRELLO_TOKEN=[^,]*/HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}/g" $HUBOT_CONF
-sudo sed -ri "s/HUBOT_TRELLO_BOARD=[^,]*/HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}/g" $HUBOT_CONF
-
+HUBOT_KEY=`echo hubot-key`
+echo "export HUBOT_KANDAN_TOKEN=${HUBOT_KEY}" >> /etc/profile.d/hubot.sh
+# kandan conf
+sed -ri "s/command=bundle exec thin start -e production/command=bundle exec thin start -e ${KANDAN_MODE}/g" $KANDAN_CONF
+# hubot conf
+sed -ri "s/HUBOT_KANDAN_TOKEN=[^,]*/HUBOT_KANDAN_TOKEN=${HUBOT_KEY}/g" ${HUBOT_CONF}
+sed -ri "s/HUBOT_TRELLO_KEY=[^,]*/HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}/g"       $HUBOT_CONF
+sed -ri "s/HUBOT_TRELLO_TOKEN=[^,]*/HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}/g" $HUBOT_CONF
+sed -ri "s/HUBOT_TRELLO_BOARD=[^,]*/HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}/g" $HUBOT_CONF
+# start daemon
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
 

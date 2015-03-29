@@ -14,7 +14,7 @@ docker run -d -p 22 -p 3000:3000 \
   -e "HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}" \
   miurahr/kandan-hubot /usr/bin/runner
 
-if [ -d /run/docker ]; then
+if [ ! -d /run/docker ]; then
   sudo mkdir -p /run/docker
   sudo chmod 777 /run/docker
 fi
