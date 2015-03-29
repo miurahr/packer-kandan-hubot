@@ -18,6 +18,8 @@
     "hubot": ">=2.6.0",
     "hubot-scripts": ">= 2.4.1",
     "hubot-kandan": ">=1.1.0",
+    "hubot-sushiyuki": ">=0.0.2",
+    "hubot-jenkins-notifier": ">=0.1.5",
     "optparse": "1.0.3"
   },
 

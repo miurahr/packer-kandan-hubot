@@ -17,6 +17,8 @@ git clone https://github.com/miurahr/hubot-kandan.git       ${HROOT}/hubot/node_
 git clone https://github.com/hubot-scripts/hubot-trello.git ${HROOT}/hubot/node_modules/hubot-trello
 
 cd ${HROOT}
+npm install --save hubot-redmine-notifier
+npm install --save hubot-jenkins-notifier
 npm install
 make package
 
