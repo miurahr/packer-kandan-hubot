@@ -10,9 +10,6 @@ set -e
 # KANDAN_DBPASS
 # KANDAN_DBNAME
 # 
-# HUBOT_TRELLO_KEY
-# HUBOT_TRELLO_TOKEN
-# HUBOT_TRELLO_BOARD
 # --
 
 HUBOT_CONF=/etc/supervisor/conf.d/hubot.conf
@@ -53,9 +50,9 @@ HUBOT_KEY=`echo hubot-key`
 sed -ri "s/command=bundle exec thin start -e production/command=bundle exec thin start -e ${KANDAN_MODE}/g" $KANDAN_CONF
 # hubot conf
 sed -ri "s/HUBOT_KANDAN_TOKEN=[^,]*/HUBOT_KANDAN_TOKEN=${HUBOT_KEY}/g" ${HUBOT_CONF}
-sed -ri "s/HUBOT_TRELLO_KEY=[^,]*/HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}/g"       $HUBOT_CONF
-sed -ri "s/HUBOT_TRELLO_TOKEN=[^,]*/HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}/g" $HUBOT_CONF
-sed -ri "s/HUBOT_TRELLO_BOARD=[^,]*/HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}/g" $HUBOT_CONF
+#sed -ri "s/HUBOT_TRELLO_KEY=[^,]*/HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}/g"       $HUBOT_CONF
+#sed -ri "s/HUBOT_TRELLO_TOKEN=[^,]*/HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}/g" $HUBOT_CONF
+#sed -ri "s/HUBOT_TRELLO_BOARD=[^,]*/HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}/g" $HUBOT_CONF
 
 # start daemon
 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf

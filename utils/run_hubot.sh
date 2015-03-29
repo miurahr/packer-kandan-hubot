@@ -9,9 +9,6 @@ docker run -d -p 22 -p 3000:3000 \
   -e "KANDAN_DBHOST=${KANDAN_DBHOST}" \
   -e "KANDAN_DBUSER=${KANDAN_DBUSER}" \
   -e "KANDAN_DBPASS=${KANDAN_DBPASS}" \
-  -e "HUBOT_TRELLO_KEY=${HUBOT_TRELLO_KEY}" \
-  -e "HUBOT_TRELLO_TOKEN=${HUBOT_TRELLO_TOKEN}" \
-  -e "HUBOT_TRELLO_BOARD=${HUBOT_TRELLO_BOARD}" \
   miurahr/kandan-hubot /usr/bin/runner
 
 if [ ! -d /run/docker ]; then

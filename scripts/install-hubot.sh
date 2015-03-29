@@ -14,7 +14,7 @@ install -d /${HROOT}/hubot/bin
 install /tmp/hubot/package.json       ${HROOT}/hubot/package.json
 
 git clone https://github.com/miurahr/hubot-kandan.git       ${HROOT}/hubot/node_modules/hubot-kandan
-git clone https://github.com/hubot-scripts/hubot-trello.git ${HROOT}/hubot/node_modules/hubot-trello
+#git clone https://github.com/hubot-scripts/hubot-trello.git ${HROOT}/hubot/node_modules/hubot-trello
 
 cd ${HROOT}
 npm install --save hubot-redmine-notifier
@@ -28,7 +28,7 @@ install /tmp/hubot/external-scripts.json ${HROOT}/hubot/external-scripts.json
 cd ${HROOT}/hubot
 npm install faye
 npm install ntwitter
-npm install node-trello
+#npm install node-trello
 
 chown -R hubot:hubot ${HROOT}
 
