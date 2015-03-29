@@ -1,6 +1,8 @@
 packer-kandan-hubot
 ===================
-It build image which is installed Kandan and hubot.  
+
+It build docker image for utilizing Kandan and Hubot.
+
 It is inspired from 
 blog: http://hidemium.hatenablog.com/entry/2014/11/03/022453
 

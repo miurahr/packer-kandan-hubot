@@ -1,0 +1,13 @@
+# please update following variables before use.
+# locate this file as same as run_hubot.sh  script
+
+KANDAN_MODE=development
+KANDAN_DBNAME=kandan
+KANDAN_DBHOST=localhost
+KANDAN_DBUSER=postgres
+KANDAN_DBPASS=
+ 
+HUBOT_TRELLO_KEY=key
+HUBOT_TRELLO_TOKEN=token
+HUBOT_TRELLO_BOARD=board_id
+

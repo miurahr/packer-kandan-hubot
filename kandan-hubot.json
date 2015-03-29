@@ -2,7 +2,7 @@
   "builders": [
     {
         "type": "docker",
-        "image": "ubuntu:14.04.02",
+        "image": "ubuntu:14.04.2",
         "commit": true,
         "pull": true
     }
@@ -30,7 +30,8 @@
       "type": "shell",
       "scripts": [
         "scripts/setup-base-system.sh",
-        "scripts/install-kandan-hubot.sh"
+        "scripts/install-hubot.sh",
+        "scripts/install-kandan.sh"
       ]
     },
     {
