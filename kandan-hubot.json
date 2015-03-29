@@ -1,0 +1,60 @@
+{
+  "builders": [
+    {
+        "type": "docker",
+        "image": "ubuntu:14.04.02",
+        "commit": true,
+        "pull": true
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "hubot",
+      "destination": "/tmp"
+    },
+    {
+      "type": "file",
+      "source": "kandan",
+      "destination": "/tmp"
+    },
+
+    {
+      "type": "file",
+      "only": ["docker"],
+      "source": "supervisor",
+      "destination": "/tmp"
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/setup-base-system.sh",
+        "scripts/install-kandan-hubot.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "only": ["docker"],
+      "scripts": [
+        "scripts/install-supervisor.sh"
+      ]
+    },
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/cleanup.sh"
+      ]
+    }
+  ],
+
+  "post-processors": [
+    {
+    "type": "docker-tag",
+    "only": ["docker"],
+    "repository": "miurahr/kandan-hubot",
+    "tag": "latest"
+    }
+  ]
+
+}
