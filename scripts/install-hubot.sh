@@ -26,7 +26,7 @@ install /tmp/hubot/hubot-scripts.json ${HROOT}/hubot/hubot-scripts.json
 install /tmp/hubot/external-scripts.json ${HROOT}/hubot/external-scripts.json
 
 cd ${HROOT}/hubot
-npm install faye
+npm install faye@1.0.1
 npm install ntwitter
 #npm install node-trello
 
