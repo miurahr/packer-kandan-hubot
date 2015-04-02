@@ -17,14 +17,14 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/setup-base-system.sh",
-        "scripts/install-kandan.sh"
+        "common/setup-base-system.sh",
+        "kandan/install-kandan.sh"
       ]
     },
     {
       "type": "shell",
       "scripts": [
-        "scripts/cleanup.sh"
+        "common/cleanup.sh"
       ]
     }
   ],

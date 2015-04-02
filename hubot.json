@@ -17,14 +17,14 @@
     {
       "type": "shell",
       "scripts": [
-        "scripts/setup-base-system.sh",
-        "scripts/install-hubot.sh",
+        "common/setup-base-system.sh",
+        "hubot/install-hubot.sh",
       ]
     },
     {
       "type": "shell",
       "scripts": [
-        "scripts/cleanup.sh"
+        "common/cleanup.sh"
       ]
     }
   ],
