@@ -44,7 +44,7 @@ sudo -u kandan -E bundle exec rake db:create db:migrate kandan:bootstrap
 sudo -u kandan -E bundle exec rake assets:precompile
 sudo -u kandan -E bundle exec rake kandan:boot_hubot
 sudo -u kandan -E bundle exec rake kandan:hubot_access_key | grep -oP "(?<=Your hubot access key is )[^ ]*" > hubot-key
-HUBOT_KEY=`echo hubot-key`
+HUBOT_KEY=`cat hubot-key`
 
 # kandan conf
 sed -ri "s/command=bundle exec thin start -e production/command=bundle exec thin start -e ${KANDAN_MODE}/g" $KANDAN_CONF
