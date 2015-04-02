@@ -13,8 +13,5 @@ apt-get -y install \
   g++ \
   make
   
-curl -sL https://deb.nodesource.com/setup | bash - 
-apt-get install -y nodejs
-
 # add supervisor config file
 mkdir -p /var/log/supervisor /etc/supervisor/conf.d

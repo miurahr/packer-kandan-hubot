@@ -8,7 +8,6 @@ useradd -s /bin/bash kandan
 
 # install dependency
 apt-get -y install \
-  ruby1.9.1-dev ruby-bundler \
   libpq5 sqlite3 libmysqlclient18 \
   libcurl3 libcurl3-nss libpcre3 libxml2 libxslt1.1 \
   libreadline5 \

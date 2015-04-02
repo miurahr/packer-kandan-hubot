@@ -7,6 +7,9 @@ export HROOT=/srv/hubot-${HVER}
 # runner user
 useradd -s /bin/false hubot
 
+curl -sL https://deb.nodesource.com/setup | bash -
+apt-get install -y nodejs
+
 npm install -g mime@1.2.11 qs@0.4.2 coffee-script@1.6.3
 
 wget -O /tmp/hubot.zip https://github.com/github/hubot/archive/v${HVER}.zip && unzip -d /srv /tmp/hubot.zip && rm /tmp/hubot.zip 
