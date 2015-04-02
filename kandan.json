@@ -2,7 +2,7 @@
   "builders": [
     {
         "type": "docker",
-        "image": "ubuntu:14.04.2",
+        "image": "miurahr/rbenv:2.0.0-p643",
         "commit": true,
         "pull": true
     }
@@ -11,34 +11,14 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "hubot",
-      "destination": "/tmp"
-    },
-    {
-      "type": "file",
       "source": "kandan",
-      "destination": "/tmp"
-    },
-
-    {
-      "type": "file",
-      "only": ["docker"],
-      "source": "supervisor",
       "destination": "/tmp"
     },
     {
       "type": "shell",
       "scripts": [
         "scripts/setup-base-system.sh",
-        "scripts/install-hubot.sh",
         "scripts/install-kandan.sh"
-      ]
-    },
-    {
-      "type": "shell",
-      "only": ["docker"],
-      "scripts": [
-        "scripts/install-supervisor.sh"
       ]
     },
     {
@@ -53,7 +33,7 @@
     {
     "type": "docker-tag",
     "only": ["docker"],
-    "repository": "miurahr/kandan-hubot",
+    "repository": "kandan",
     "tag": "latest"
     }
   ]

@@ -32,4 +32,6 @@ npm install ntwitter
 
 chown -R hubot:hubot ${HROOT}
 
+install /tmp/hubot/hubot.conf  /etc/supervisor/conf.d/
+
 rm -rf /tmp/hubot

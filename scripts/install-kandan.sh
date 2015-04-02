@@ -36,4 +36,6 @@ apt-get -y remove \
   libcurl4-openssl-dev libpcre3-dev libxml2-dev libxslt-dev \
   libreadline-gplv2-dev
 
+install /tmp/kandan/kandan.conf /etc/supervisor/conf.d/
+
 rm -rf /tmp/kandan
